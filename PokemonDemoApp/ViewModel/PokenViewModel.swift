@@ -7,23 +7,21 @@
 
 import UIKit
 
-class PokenViewModel: UIViewController {
+class PokenViewModel {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
+    var apiConnection: APIConnection = APIConnection()
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    var pokemonDetail: PokemonModel?
+    
+    func retrievePokemonDetails(name: String) async throws -> PokemonModel? {
+        do {
+            let pokemonDetail = try await apiConnection.getPokemons(name: name)
+            return pokemonDetail
+        } catch {
+            print("Error fetching pokemon details: \(error)")
+            return nil
+        }
     }
-    */
 
+    
 }
