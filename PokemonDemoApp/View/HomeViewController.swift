@@ -60,11 +60,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             do {
                 let pokemonDetail = try await pokemonVM.retrievePokemonDetails(name: pokemons[indexPath.row].lowercased())
                 
-                print(pokemonDetail?.height)
-                print(pokemonDetail?.name)
-                print(pokemonDetail?.weight)
-                print(pokemonDetail?.types)
-                
                 let vc = PokemonDetailsViewController()
                 vc.pokemonDetail = pokemonDetail
                 present(vc, animated: true)
